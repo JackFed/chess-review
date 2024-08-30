@@ -25,3 +25,7 @@
 .White {
     background-color: cornsilk;
 }
+
+.piece {
+    width: 90%;
+}
