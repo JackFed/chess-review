@@ -1,6 +1,7 @@
 import "./styles/Board.css";
+import { setupPieces } from "./gameLogic";
 
-const Board = ({ playerColor = "black" }) => { 
+const Board = ({ playerColor = "black", oponentColor = "white" }) => { 
 
     const cols = ["a", "b", "c", "d", "e", "f", "g", "h"];
     const rows = ["8", "7", "6", "5", "4", "3", "2", "1"];
@@ -10,94 +11,7 @@ const Board = ({ playerColor = "black" }) => {
         for (let i=0; i < rows.length; i++) {
             let row = [];
             for (let j=0; j < cols.length; j++) {
-                let color = "white";
-                let img = ""
-                let piece = "";
-                
-                if ((i+j) % 2 === 1) {
-                    color = "black";
-                }
-
-                if (playerColor === "black" ) {
-                    if (rows[7-i] == 1) {
-                        switch (cols[7-j]) {
-                            case "a":
-                            case "h":
-                                img = "assets/white/white-rook.png";
-                                piece = "R";
-                                break;
-                            case "b":
-                            case "g":
-                                img = "assets/white/white-bishop.png";
-                                piece = "B";
-                                break;
-                            case "c":
-                            case "f":
-                                img = "assets/white/white-knight.png";
-                                piece = "N";
-                                break;
-                            case "d":
-                                img = "assets/white/white-queen.png";
-                                piece = "Q";
-                                break;
-                            case "e":
-                                img = "assets/white/white-king.png";
-                                piece = "K";
-                                break;
-
-                        }
-                    }
-                    if (rows[7-i] == 8) {
-                        switch (cols[7-j]) {
-                            case "a":
-                            case "h":
-                                img = "assets/black/black-rook.png";
-                                piece = "R";
-                                break;
-                            case "b":
-                            case "g":
-                                img = "assets/black/black-bishop.png";
-                                piece = "B";
-                                break;
-                            case "c":
-                            case "f":
-                                img = "assets/black/black-knight.png";
-                                piece = "N";
-                                break;
-                            case "d":
-                                img = "assets/black/black-queen.png";
-                                piece = "Q";
-                                break;
-                            case "e":
-                                img = "assets/black/black-king.png";
-                                piece = "K";
-                                break;
-
-                        }
-                    }
-                    if (i == 1) {
-                        img = "assets/white/white-pawn.png"
-                    }
-                    if (i == 6) {
-                        img = "assets/black/black-pawn.png"
-                    }
-                    row.push({
-                        pos: cols[7-j].concat(rows[7-i]),
-                        color: color,
-                        img: img,
-                        piece: piece,
-                    });
-                } else {           
-                    if (rows[i] === 1) {
-                        console.log(`Rows: ${rows[7-i]}`)
-                        img = "assets/white/white-king.png"
-                    }               
-                    row.push({
-                        pos: cols[j].concat(rows[i]),
-                        color: color,
-                        img: img,
-                    });
-                }
+                row = setupPieces(row, rows, cols, i, j, playerColor, oponentColor)
             }
             gameboard.push(row);
         }
