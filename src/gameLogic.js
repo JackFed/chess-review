@@ -1,4 +1,4 @@
-function setupPieces(row, rows, cols, rowIndex, colIndex, playerColor, oponentColor) {
+function setupPieces(row, rows, cols, rowIndex, colIndex, playerColor) {
     let color = "white";
     let img = ""
     let piece = "";
@@ -73,7 +73,7 @@ function setupPieces(row, rows, cols, rowIndex, colIndex, playerColor, oponentCo
     if (rowIndex == 1) {
         img = "assets/black/black-pawn.png"
     }
-    // return {img, piece};
+
     row.push({
         pos: cols[colIndex].concat(rows[rowIndex]),
         color: color,
