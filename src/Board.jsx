@@ -29,8 +29,9 @@ const Board = ({ playerColor }) => {
                 <div key={rowIndex} className="row">
                     {row.map((tile, colIndex) => (
                         <div key={colIndex} className={`square ${tile.color}`}>
-                            {/* {tile.pos} */}
-                            <img className="piece" src={tile.img} alt="" />
+                            {tile.img !== "" &&
+                                <img className="piece" src={tile.img} alt="" />
+                            }
                         </div>
                     ))}
                 </div>
